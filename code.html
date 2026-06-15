@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DEVENDRA GADGE | Stack Architect &amp; Educator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Geist:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-background": "#dae2fd",
+                      "on-surface": "#dae2fd",
+                      "error-container": "#93000a",
+                      "secondary-fixed-dim": "#ebb2ff",
+                      "surface-bright": "#31394d",
+                      "surface": "#0b1326",
+                      "on-secondary-fixed-variant": "#74009f",
+                      "tertiary-container": "#00f990",
+                      "on-primary-container": "#006970",
+                      "outline-variant": "#3b494b",
+                      "on-tertiary-container": "#006d3c",
+                      "secondary-container": "#b600f8",
+                      "on-tertiary-fixed-variant": "#00522c",
+                      "surface-container-high": "#222a3d",
+                      "primary-fixed": "#7df4ff",
+                      "on-secondary": "#520072",
+                      "on-surface-variant": "#b9cacb",
+                      "surface-container": "#171f33",
+                      "surface-container-lowest": "#060e20",
+                      "on-primary-fixed": "#002022",
+                      "background": "#000000",
+                      "secondary-fixed": "#f8d8ff",
+                      "primary": "#00f0ff",
+                      "primary-container": "#00f0ff",
+                      "on-primary-fixed-variant": "#004f54",
+                      "surface-variant": "#2d3449",
+                      "on-error-container": "#ffdad6",
+                      "inverse-surface": "#dae2fd",
+                      "error": "#ffb4ab",
+                      "inverse-primary": "#006970",
+                      "on-tertiary": "#00391d",
+                      "on-error": "#690005",
+                      "on-primary": "#00363a",
+                      "tertiary": "#ccff00",
+                      "on-tertiary-fixed": "#00210e",
+                      "outline": "#849495",
+                      "primary-fixed-dim": "#00dbe9",
+                      "tertiary-fixed": "#5bffa1",
+                      "surface-dim": "#0b1326",
+                      "on-secondary-fixed": "#320047",
+                      "secondary": "#ebb2ff",
+                      "surface-container-highest": "#2d3449",
+                      "inverse-on-surface": "#283044",
+                      "tertiary-fixed-dim": "#00e383",
+                      "surface-tint": "#00dbe9",
+                      "surface-container-low": "#131b2e",
+                      "on-secondary-container": "#fff6fc"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "margin-desktop": "80px",
+                      "container-max": "1200px",
+                      "unit": "4px",
+                      "margin-mobile": "20px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Geist"],
+                      "label-mono": ["JetBrains Mono"],
+                      "headline-lg-mobile": ["Geist"],
+                      "display-lg": ["Geist"],
+                      "body-md": ["Geist"]
+              },
+              "fontSize": {
+                      "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                      "label-mono": ["14px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                      "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+        .glitch-hover:hover {
+            animation: glitch 0.3s cubic-bezier(.25,.46,.45,.94) both infinite;
+            color: #ccff00;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(0, 240, 255, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 240, 255, 0.1);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(0, 240, 255, 0.08) 0%, transparent 70%),
+                        radial-gradient(circle at 10% 20%, rgba(204, 255, 0, 0.05) 0%, transparent 40%);
+        }
+        body {
+            background-color: #000000;
+            color: #dae2fd;
+            font-family: 'Geist', sans-serif;
+            overflow-x: hidden;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.21, 0.45, 0.15, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .marquee-container {
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+        .input-glow:focus {
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+            border-color: #00f0ff;
+        }
+        .stat-card {
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+        .stat-card::after {
+            content: '';
+            position: absolute;
+            left: -1px;
+            top: 20%;
+            height: 60%;
+            width: 2px;
+            background: #00f0ff;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body class="selection:bg-primary/30 selection:text-white">
+<!-- Header / Navigation -->
+<header class="fixed top-0 left-0 w-full z-[100] bg-black/60 backdrop-blur-xl border-b border-white/5 h-20 flex items-center">
+<nav class="flex justify-between items-center px-margin-mobile md:px-margin-desktop w-full max-w-container-max mx-auto">
+<div class="font-label-mono text-label-mono font-bold tracking-tighter text-primary">
+            DEV_CORE_V2.1
+        </div>
+<div class="hidden md:flex items-center gap-8 font-label-mono text-label-mono">
+<a class="text-primary border-b border-primary pb-1" href="#hero">HOME</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#skills">MATRIX</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#projects">OUTPUTS</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#contact">SYNC</a>
+<a class="bg-primary/10 border border-primary/20 px-6 py-2 text-primary font-bold hover:bg-primary hover:text-on-primary transition-all active:scale-95" href="#contact">
+                INITIALIZE_SYNC
+            </a>
+</div>
+<button class="md:hidden flex flex-col gap-1.5 p-2 z-[110]" id="menu-toggle">
+<span class="w-6 h-0.5 bg-primary transition-transform" id="bar1"></span>
+<span class="w-6 h-0.5 bg-primary transition-opacity" id="bar2"></span>
+<span class="w-6 h-0.5 bg-primary transition-transform" id="bar3"></span>
+</button>
+</nav>
+</header>
+<!-- Mobile Menu -->
+<div class="fixed inset-0 bg-black/98 backdrop-blur-3xl z-[105] flex flex-col items-center justify-center translate-x-full transition-transform duration-500" id="fullscreen-menu">
+<div class="flex flex-col gap-10 text-center">
+<a class="text-4xl font-headline-lg text-primary" href="#hero" onclick="toggleMenu()">HOME</a>
+<a class="text-4xl font-headline-lg text-on-surface" href="#skills" onclick="toggleMenu()">MATRIX</a>
+<a class="text-4xl font-headline-lg text-on-surface" href="#projects" onclick="toggleMenu()">OUTPUTS</a>
+<a class="text-4xl font-headline-lg text-tertiary" href="#contact" onclick="toggleMenu()">CONTACT</a>
+</div>
+</div>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative min-h-[90vh] flex flex-col justify-center items-center px-margin-mobile md:px-margin-desktop text-center hero-gradient overflow-hidden" id="hero">
+<div class="z-10 max-w-5xl">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 bg-tertiary/5 border border-tertiary/20 text-tertiary font-label-mono text-xs mb-8 rounded-full">
+<span class="w-1.5 h-1.5 bg-tertiary rounded-full animate-pulse"></span>
+                UGC NET (LS) QUALIFIED • DEC 2025
+            </div>
+<h1 class="font-display-lg text-[48px] md:text-display-lg text-on-surface leading-[1] mb-8">
+                DEVENDRA <span class="text-primary italic">GADGE</span>
+</h1>
+<div class="flex flex-wrap justify-center items-center gap-4 text-primary font-label-mono mb-10 text-sm md:text-base">
+<span class="flex items-center gap-2"><i class="fa-solid fa-code text-xs"></i> STACK ARCHITECT</span>
+<span class="text-white/20">/</span>
+<span class="flex items-center gap-2"><i class="fa-solid fa-graduation-cap text-xs"></i> COMPUTER EDUCATOR</span>
+<span class="text-white/20">/</span>
+<span class="flex items-center gap-2"><i class="fa-solid fa-microchip text-xs"></i> JAVA DEVELOPER</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-12 max-w-3xl mx-auto leading-relaxed">
+                Engineering robust enterprise solutions at <span class="text-white">PM SHRI Kendriya Vidyalaya</span>. Bridging high-performance Java architecture with advanced pedagogical systems.
+            </p>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="group flex items-center gap-3 bg-primary px-8 py-4 text-on-primary font-bold hover:shadow-[0_0_40px_rgba(0,240,255,0.3)] transition-all" href="mailto:devendragadge0266@gmail.com">
+<i class="fa-solid fa-paper-plane"></i>
+                    SEND_INQUIRY
+                </a>
+<div class="flex items-center gap-4 bg-white/5 border border-white/10 px-6 py-4">
+<a class="text-on-surface-variant hover:text-primary transition-all hover:scale-110" href="https://github.com/gadgeDeven" target="_blank"><i class="fa-brands fa-github text-2xl"></i></a>
+<a class="text-on-surface-variant hover:text-primary transition-all hover:scale-110" href="https://www.linkedin.com/in/devendragadge" target="_blank"><i class="fa-brands fa-linkedin text-2xl"></i></a>
+<a class="text-on-surface-variant hover:text-primary transition-all hover:scale-110" href="https://www.instagram.com/devendra_0266" target="_blank"><i class="fa-brands fa-instagram text-2xl"></i></a>
+<a class="text-on-surface-variant hover:text-primary transition-all hover:scale-110" href="https://wa.me/916261284565" target="_blank"><i class="fa-brands fa-whatsapp text-2xl"></i></a>
+</div>
+</div>
+</div>
+<!-- Animated Background Elements -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] opacity-[0.03] pointer-events-none select-none">
+<div class="w-full h-full" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 40px 40px;"></div>
+</div>
+</section>
+<!-- Achievements Marquee -->
+<section class="py-10 bg-primary/5 border-y border-white/5 overflow-hidden marquee-container">
+<div class="flex whitespace-nowrap gap-24 animate-[marquee_30s_linear_infinite]">
+<div class="flex items-center gap-4 text-primary font-label-mono uppercase tracking-[0.2em] text-sm">
+<i class="fa-solid fa-award text-tertiary"></i>
+                UGC NET 96.48 PERCENTILE
+            </div>
+<div class="flex items-center gap-4 text-on-surface font-label-mono uppercase tracking-[0.2em] text-sm">
+<i class="fa-solid fa-certificate text-primary"></i>
+                HACKERRANK CERTIFIED SDE
+            </div>
+<div class="flex items-center gap-4 text-tertiary font-label-mono uppercase tracking-[0.2em] text-sm">
+<i class="fa-solid fa-medal"></i>
+                NCC CADET RANK-CADET
+            </div>
+<div class="flex items-center gap-4 text-primary font-label-mono uppercase tracking-[0.2em] text-sm">
+<i class="fa-solid fa-brain text-tertiary"></i>
+                JAVA &amp; SQL SPECIALIST
+            </div>
+<div class="flex items-center gap-4 text-on-surface font-label-mono uppercase tracking-[0.2em] text-sm">
+<i class="fa-solid fa-shield-halved text-primary"></i>
+                INNOSECURE TECHNOLOGIES ALUM
+            </div>
+</div>
+</section>
+<!-- Tech Matrix -->
+<section class="py-32 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto" id="skills">
+<div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+<div class="max-w-xl">
+<div class="text-tertiary font-label-mono text-sm mb-4">01_TECHNICAL_INFRASTRUCTURE</div>
+<h2 class="font-headline-lg text-4xl md:text-5xl">Stack Architecture</h2>
+</div>
+<div class="h-px flex-grow bg-white/10 hidden md:block mb-4 ml-12"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Backend Development -->
+<div class="glass-card p-10 flex flex-col h-full border-l-2 border-l-primary/40">
+<div class="flex justify-between items-start mb-10">
+<div class="p-3 bg-primary/10 rounded-lg">
+<i class="fa-solid fa-gears text-primary text-4xl"></i>
+</div>
+<span class="text-label-mono text-xs text-primary/40">TIER_01</span>
+</div>
+<h3 class="text-2xl font-bold mb-6">Backend &amp; Dev</h3>
+<p class="text-on-surface-variant font-body-md mb-8 flex-grow">Advanced engineering using Java ecosystems and MVC design patterns.</p>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex items-center gap-2 group">
+<i class="fa-brands fa-java text-primary group-hover:scale-110 transition-transform"></i>
+<span class="text-xs font-label-mono">Java</span>
+</div>
+<div class="flex items-center gap-2 group">
+<i class="fa-solid fa-leaf text-green-400 group-hover:scale-110 transition-transform"></i>
+<span class="text-xs font-label-mono">Spring Boot</span>
+</div>
+<div class="flex items-center gap-2 group">
+<i class="fa-solid fa-code text-blue-400 group-hover:scale-110 transition-transform"></i>
+<span class="text-xs font-label-mono">C/C++</span>
+</div>
+<div class="flex items-center gap-2 group">
+<i class="fa-solid fa-link text-orange-400 group-hover:scale-110 transition-transform"></i>
+<span class="text-xs font-label-mono">REST APIs</span>
+</div>
+<div class="flex items-center gap-2 group">
+<i class="fa-solid fa-database text-yellow-400 group-hover:scale-110 transition-transform"></i>
+<span class="text-xs font-label-mono">Hibernate</span>
+</div>
+<div class="flex items-center gap-2 group">
+<i class="fa-solid fa-server text-purple-400 group-hover:scale-110 transition-transform"></i>
+<span class="text-xs font-label-mono">JSP/Servlets</span>
+</div>
+</div>
+</div>
+<!-- Data & Tools -->
+<div class="glass-card p-10 flex flex-col h-full border-l-2 border-l-tertiary/40">
+<div class="flex justify-between items-start mb-10">
+<div class="p-3 bg-tertiary/10 rounded-lg">
+<i class="fa-solid fa-screwdriver-wrench text-tertiary text-4xl"></i>
+</div>
+<span class="text-label-mono text-xs text-tertiary/40">TIER_02</span>
+</div>
+<h3 class="text-2xl font-bold mb-6">Data &amp; Tools</h3>
+<p class="text-on-surface-variant font-body-md mb-8 flex-grow">Relational integrity management and modern development environments.</p>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex items-center gap-2 group">
+<i class="fa-solid fa-database text-tertiary group-hover:scale-110 transition-transform"></i>
+<span class="text-xs font-label-mono">MySQL</span>
+</div>
+<div class="flex items-center gap-2 group">
+<i class="fa-brands fa-git-alt text-red-500 group-hover:scale-110 transition-transform"></i>
+<span class="text-xs font-label-mono">Git</span>
+</div>
+<div class="flex items-center gap-2 group">
+<i class="fa-solid fa-code-branch text-blue-300 group-hover:scale-110 transition-transform"></i>
+<span class="text-xs font-label-mono">JDBC</span>
+</div>
+<div class="flex items-center gap-2 group">
+<i class="fa-solid fa-cube text-orange-500 group-hover:scale-110 transition-transform"></i>
+<span class="text-xs font-label-mono">Maven</span>
+</div>
+<div class="flex items-center gap-2 group">
+<i class="fa-solid fa-terminal text-green-500 group-hover:scale-110 transition-transform"></i>
+<span class="text-xs font-label-mono">VS Code</span>
+</div>
+<div class="flex items-center gap-2 group">
+<i class="fa-solid fa-circle-nodes text-indigo-400 group-hover:scale-110 transition-transform"></i>
+<span class="text-xs font-label-mono">Eclipse</span>
+</div>
+</div>
+</div>
+<!-- Modern Pedagogy -->
+<div class="glass-card p-10 flex flex-col h-full border-l-2 border-l-secondary-fixed-dim/40">
+<div class="flex justify-between items-start mb-10">
+<div class="p-3 bg-secondary-fixed-dim/10 rounded-lg">
+<i class="fa-solid fa-chalkboard-user text-secondary-fixed-dim text-4xl"></i>
+</div>
+<span class="text-label-mono text-xs text-secondary-fixed-dim/40">TIER_03</span>
+</div>
+<h3 class="text-2xl font-bold mb-6">Pedagogy &amp; AI</h3>
+<p class="text-on-surface-variant font-body-md mb-8 flex-grow">Educational leadership and digital transformation via AI-integrated learning.</p>
+<div class="grid grid-cols-1 gap-4">
+<div class="flex items-center gap-3 group">
+<i class="fa-solid fa-robot text-secondary-fixed-dim group-hover:scale-110 transition-transform"></i>
+<span class="text-xs font-label-mono">AI-Enhanced Teaching</span>
+</div>
+<div class="flex items-center gap-3 group">
+<i class="fa-solid fa-users-gear text-secondary-fixed-dim group-hover:scale-110 transition-transform"></i>
+<span class="text-xs font-label-mono">Mentorship &amp; Leadership</span>
+</div>
+<div class="flex items-center gap-3 group">
+<i class="fa-solid fa-book-open text-secondary-fixed-dim group-hover:scale-110 transition-transform"></i>
+<span class="text-xs font-label-mono">Curriculum Architecture</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Impact & Analytics -->
+<section class="py-20 bg-primary/5">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-12">
+<div class="stat-card p-6 reveal">
+<div class="text-primary font-display-lg text-5xl mb-2">10+</div>
+<div class="text-on-surface-variant font-label-mono text-xs uppercase tracking-widest">Projects_Deployed</div>
+</div>
+<div class="stat-card p-6 reveal" style="transition-delay: 100ms;">
+<div class="text-tertiary font-display-lg text-5xl mb-2">96.4</div>
+<div class="text-on-surface-variant font-label-mono text-xs uppercase tracking-widest">NET_Percentile</div>
+</div>
+<div class="stat-card p-6 reveal" style="transition-delay: 200ms;">
+<div class="text-secondary font-display-lg text-5xl mb-2">5+</div>
+<div class="text-on-surface-variant font-label-mono text-xs uppercase tracking-widest">Years_Exp</div>
+</div>
+<div class="stat-card p-6 reveal" style="transition-delay: 300ms;">
+<div class="text-primary font-display-lg text-5xl mb-2">500+</div>
+<div class="text-on-surface-variant font-label-mono text-xs uppercase tracking-widest">Students_Mentored</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Project Outputs -->
+<section class="py-32" id="projects">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-center gap-6 mb-20">
+<h2 class="font-headline-lg text-4xl md:text-5xl whitespace-nowrap">System <span class="text-primary italic">Outputs</span></h2>
+<div class="h-px flex-grow bg-white/10"></div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+<!-- Efficio Project -->
+<div class="group glass-card overflow-hidden flex flex-col md:flex-row reveal">
+<div class="w-full md:w-[45%] h-72 md:h-auto overflow-hidden relative border-r border-white/5">
+<img alt="Efficio Interface" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb2rVPd9Y3FSrFIWkVMS_J3mrWj5fVWbKbFu_BfiTXiRcxVhA7TKufYm782QLYAJvtVpXFIHI2HJ9THNEt0925amJqbox5JB2YLHyOE6vRmCkGQMd3nrF0_aO6cP8dFw8O-L5tNqhkV97W-cSof4OPs7g5brSHHGExHDokMOFBhk-FSWXdZ2vRPUnnxBaVoSXWvzl22ligC1H-9oAFPlF_kNQNb0t-48j0RsYJE4J15QMeijMfbi-JWqRdxpNfebjNAMBd8IHAb84"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
+<div class="absolute bottom-6 left-6">
+<span class="bg-primary/20 backdrop-blur-md border border-primary/40 text-primary px-3 py-1 text-[10px] font-label-mono rounded-full">JAVA // JSP // MYSQL</span>
+</div>
+</div>
+<div class="w-full md:w-[55%] p-10 flex flex-col">
+<h3 class="text-3xl font-bold mb-4 leading-tight group-hover:text-primary transition-colors">Efficio Enterprise</h3>
+<p class="text-on-surface-variant text-sm mb-8 leading-relaxed">
+                            Full-stack task management system featuring role-based authentication for Admin, TL, and Employees. Optimized for real-time synchronization.
+                        </p>
+<div class="mt-auto pt-6 border-t border-white/5 flex gap-6">
+<a class="flex items-center gap-2 text-xs font-label-mono text-primary hover:tracking-widest transition-all" href="#">
+<i class="fa-solid fa-bolt text-xs"></i> VIEW_LIVE
+                            </a>
+<a class="flex items-center gap-2 text-xs font-label-mono text-white/40 hover:text-white transition-colors" href="https://github.com/gadgeDeven">
+<i class="fa-brands fa-github text-xs"></i> SOURCE_CODE
+                            </a>
+</div>
+</div>
+</div>
+<!-- Upcoming System -->
+<div class="glass-card p-12 flex flex-col justify-center items-center text-center reveal border-dashed border-white/10" style="transition-delay: 200ms;">
+<div class="relative w-24 h-24 mb-10">
+<div class="absolute inset-0 rounded-full border-2 border-primary/20 animate-[spin_15s_linear_infinite]"></div>
+<div class="absolute inset-2 rounded-full border-2 border-dashed border-tertiary/40 animate-[spin_8s_linear_infinite_reverse]"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<i class="fa-solid fa-microchip text-primary text-4xl animate-pulse"></i>
+</div>
+</div>
+<h3 class="text-2xl font-bold mb-4 italic tracking-tight">AI Pedagogy Engine</h3>
+<p class="text-on-surface-variant text-sm mb-10 max-w-xs leading-relaxed">
+                        Architecting a next-gen learning platform for advanced computer science instruction.
+                    </p>
+<div class="px-6 py-2 bg-white/5 border border-white/10 text-[10px] font-label-mono text-white/60 tracking-widest uppercase">
+                        STATUS: IN_DEVELOPMENT
+                    </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Sync Inquiry Section -->
+<section class="py-32 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto" id="contact">
+<div class="glass-card overflow-hidden grid grid-cols-1 lg:grid-cols-2">
+<div class="p-12 md:p-20 bg-primary/5 border-r border-white/5 flex flex-col">
+<div class="text-primary font-label-mono text-sm mb-6">INITIATE_HANDSHAKE</div>
+<h2 class="font-headline-lg text-4xl md:text-5xl mb-8 leading-tight">Ready to collaborate?</h2>
+<p class="text-on-surface-variant font-body-md mb-12">
+                    Open for architectural consulting, pedagogical digital transformation, or enterprise software development.
+                </p>
+<div class="space-y-6 mt-auto">
+<a class="flex items-center gap-6 group" href="mailto:devendragadge0266@gmail.com">
+<div class="w-12 h-12 flex items-center justify-center bg-white/5 border border-white/10 group-hover:border-primary/40 transition-all">
+<i class="fa-solid fa-envelope text-primary"></i>
+</div>
+<div>
+<div class="text-[10px] font-label-mono text-white/30 uppercase">Email_Primary</div>
+<div class="text-on-surface">devendragadge0266@gmail.com</div>
+</div>
+</a>
+<a class="flex items-center gap-6 group" href="tel:+916261284565">
+<div class="w-12 h-12 flex items-center justify-center bg-white/5 border border-white/10 group-hover:border-tertiary/40 transition-all">
+<i class="fa-solid fa-phone text-tertiary"></i>
+</div>
+<div>
+<div class="text-[10px] font-label-mono text-white/30 uppercase">Hotline_Direct</div>
+<div class="text-on-surface">+91 62612 84565</div>
+</div>
+</a>
+</div>
+</div>
+<div class="p-12 md:p-20 flex flex-col justify-center">
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block text-[10px] font-label-mono text-white/40 mb-2 uppercase">Your_Identity</label>
+<input class="w-full bg-white/5 border border-white/10 px-4 py-4 focus:outline-none input-glow text-sm font-label-mono text-white" placeholder="NAME" type="text"/>
+</div>
+<div>
+<label class="block text-[10px] font-label-mono text-white/40 mb-2 uppercase">Digital_Address</label>
+<input class="w-full bg-white/5 border border-white/10 px-4 py-4 focus:outline-none input-glow text-sm font-label-mono text-white" placeholder="EMAIL" type="email"/>
+</div>
+</div>
+<div>
+<label class="block text-[10px] font-label-mono text-white/40 mb-2 uppercase">Inquiry_Type</label>
+<select class="w-full bg-black border border-white/10 px-4 py-4 focus:outline-none input-glow text-sm font-label-mono appearance-none text-white/60">
+<option>PROJECT_INQUIRY</option>
+<option>TECHNICAL_CONSULT</option>
+<option>EDUCATIONAL_ALLIANCE</option>
+<option>GENERAL_COMM</option>
+</select>
+</div>
+<div>
+<label class="block text-[10px] font-label-mono text-white/40 mb-2 uppercase">Payload_Message</label>
+<textarea class="w-full bg-white/5 border border-white/10 px-4 py-4 focus:outline-none input-glow text-sm font-label-mono text-white" placeholder="TRANSMIT_DATA..." rows="4"></textarea>
+</div>
+<button class="w-full py-5 bg-primary text-on-primary font-bold text-sm tracking-widest uppercase hover:shadow-[0_0_30px_rgba(0,240,255,0.4)] transition-all flex items-center justify-center gap-3">
+<i class="fa-solid fa-paper-plane text-xs"></i>
+                        SEND_INQUIRY
+                    </button>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#050505] py-20 px-margin-mobile md:px-margin-desktop border-t border-white/5">
+<div class="max-w-container-max mx-auto">
+<div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-12 mb-20">
+<div>
+<div class="font-label-mono text-2xl font-bold text-primary mb-4 tracking-tighter">GADGE_NET.SYS</div>
+<p class="text-on-surface-variant text-sm max-w-sm">Architecting enterprise code and educational leadership for the digital frontier.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-12 lg:gap-24 font-label-mono">
+<div class="flex flex-col gap-4">
+<span class="text-[10px] text-white/30 uppercase tracking-widest">Navigation</span>
+<a class="text-sm text-on-surface-variant hover:text-primary transition-colors" href="#hero">HOME</a>
+<a class="text-sm text-on-surface-variant hover:text-primary transition-colors" href="#skills">MATRIX</a>
+<a class="text-sm text-on-surface-variant hover:text-primary transition-colors" href="#projects">OUTPUTS</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="text-[10px] text-white/30 uppercase tracking-widest">Connect</span>
+<a class="text-sm text-on-surface-variant hover:text-primary transition-colors" href="https://www.linkedin.com/in/devendragadge">LINKEDIN</a>
+<a class="text-sm text-on-surface-variant hover:text-primary transition-colors" href="https://github.com/gadgeDeven">GITHUB</a>
+<a class="text-sm text-on-surface-variant hover:text-primary transition-colors" href="https://www.instagram.com/devendra_0266">INSTAGRAM</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="text-[10px] text-white/30 uppercase tracking-widest">Status</span>
+<div class="flex items-center gap-2 text-sm text-tertiary font-bold">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary animate-pulse shadow-[0_0_8px_#ccff00]"></span>
+                        SYSTEM_ONLINE
+                    </div>
+</div>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center pt-10 border-t border-white/5 gap-6">
+<div class="text-[10px] font-label-mono text-white/60 tracking-[0.2em] uppercase font-bold">
+                © 2026 DEVENDRA GADGE // ALL RIGHTS RESERVED
+            </div>
+<div class="flex gap-6 opacity-60">
+<i class="fa-solid fa-shield-halved text-sm hover:text-primary transition-colors cursor-pointer"></i>
+<i class="fa-solid fa-terminal text-sm hover:text-primary transition-colors cursor-pointer"></i>
+<i class="fa-solid fa-microchip text-sm hover:text-primary transition-colors cursor-pointer"></i>
+</div>
+</div>
+</div>
+</footer>
+<script>
+    // Menu Logic
+    const menuBtn = document.getElementById('menu-toggle');
+    const fullscreenMenu = document.getElementById('fullscreen-menu');
+    const bars = [document.getElementById('bar1'), document.getElementById('bar2'), document.getElementById('bar3')];
+    let menuOpen = false;
+
+    function toggleMenu() {
+        menuOpen = !menuOpen;
+        if (menuOpen) {
+            fullscreenMenu.classList.remove('translate-x-full');
+            bars[0].classList.add('rotate-45', 'translate-y-2');
+            bars[1].classList.add('opacity-0');
+            bars[2].classList.add('-rotate-45', '-translate-y-2');
+        } else {
+            fullscreenMenu.classList.add('translate-x-full');
+            bars[0].classList.remove('rotate-45', 'translate-y-2');
+            bars[1].classList.remove('opacity-0');
+            bars[2].classList.remove('-rotate-45', '-translate-y-2');
+        }
+    }
+
+    menuBtn.addEventListener('click', toggleMenu);
+
+    // Scroll Animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if(href !== "#" && document.querySelector(href)) {
+                e.preventDefault();
+                document.querySelector(href).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+</script>
+<style>
+    @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+</style>
+</body></html>
